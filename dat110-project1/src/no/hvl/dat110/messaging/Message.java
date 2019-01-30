@@ -7,8 +7,12 @@ public class Message {
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		this.payload = payload; // TODO: check for length within boundary
-
+		if (payload.length <= 127) {
+			this.payload = payload; // TODO: check for length within boundary
+		} else {
+			payload = new byte[0];
+			System.out.println("Feilmelding: Melding er for lang til å bli konstruert.");
+		}
 	}
 
 	public Message() {
@@ -44,7 +48,7 @@ public class Message {
 		int len = (int) received[0];
 		byte[] midl = new byte[len];
 		for (int i = 0; i < midl.length; i++) {
-			midl[i] = received[i+1];
+			midl[i] = received[i + 1];
 		}
 		payload = midl;
 	}
