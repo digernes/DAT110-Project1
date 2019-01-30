@@ -38,7 +38,7 @@ public class Connection {
 
 	public Message receive() {
 
-		Message message = null;
+		Message message = new Message();
 		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 
 		// TODO
