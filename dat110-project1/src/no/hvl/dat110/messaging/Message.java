@@ -27,8 +27,8 @@ public class Message {
 
 		byte[] encoded = new byte[128];
 		encoded[0] = (byte) payload.length;
-		for (int i = 1; i < payload.length; i++) {
-			encoded[i] = payload[i - 1];
+		for (int i = 0; i < payload.length; i++) {
+			encoded[i+1] = payload[i];
 		}
 		// TODO
 		// encapulate/encode the payload of the message

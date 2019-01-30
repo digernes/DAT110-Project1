@@ -39,7 +39,10 @@ public class Connection {
 	public Message receive() {
 
 		Message message = null;
-		byte[] recvbuf = new byte[128];
+		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
+
+		// TODO
+		// read a segment from the input stream and decapsulate into message
 
 			try {
 				inStream.read(recvbuf);
@@ -56,6 +59,7 @@ public class Connection {
 	// close the connection by closing streams and the underlying socket
 	public void close() {
 
+		//TODO
 		try {
 
 			outStream.close();
