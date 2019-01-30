@@ -28,9 +28,15 @@ public class MessagingServer {
 
 		// TODO
 		// accept TCP connection on welcome socket and create connection
+		Socket connectionSocket;
+		try {
+			connectionSocket = welcomeSocket.accept();
+			connection = new Connection(connectionSocket);
 
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Server kunne ikkje godta tilkobling med klient.");
+			return null;
 		}
 
 		return connection;
