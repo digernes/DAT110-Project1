@@ -16,17 +16,25 @@ public class MessagingClient {
 
 	// connect to messaging server
 	public Connection connect() {
-
 		Socket clientSocket;
-		Connection connection = null;
-
+		Connection connection;
+		try {
+			clientSocket = new Socket(server, port);
+			connection = new Connection(clientSocket);
+		} catch (IOException e) {
+			System.out.println("Kunne ikkje opprette TCP tilkobling: "+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+		
+		
 		// TODO
 		// create TCP socket for client and connection
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
-		}
-
+		
+//		if (true) {
+//			throw new RuntimeException("not yet implemented");
+//		}
+		
 		return connection;
 	}
 }
