@@ -42,7 +42,10 @@ public class Message {
 		// TODO
 		// decapsulate data in received and put in payload
 		int len = (int) received[0];
-		byte[] midl = payload;
-		for (int i = 0; i < )
+		byte[] midl = new byte[len];
+		for (int i = 0; i < midl.length; i++) {
+			midl[i] = received[i+1];
+		}
+		payload = midl;
 	}
 }
