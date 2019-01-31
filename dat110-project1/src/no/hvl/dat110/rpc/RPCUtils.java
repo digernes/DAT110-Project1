@@ -32,20 +32,16 @@ public class RPCUtils {
 
 	public static byte[] marshallVoid(byte rpcid) {
 
-		byte[] encoded;
+		byte[] encoded = new byte[1];
+		encoded[0] = rpcid;
 
 		// TODO: marshall RPC identifier in case of void type
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
-		}
 
 		return encoded;
 
 	}
 
 	public static void unmarshallVoid(byte[] data) {
-
 		// TODO: unmarshall void type
 	}
 
