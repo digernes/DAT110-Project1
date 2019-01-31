@@ -16,6 +16,8 @@ public class MessagingClient {
 
 	// connect to messaging server
 	public Connection connect() {
+		// TODO
+		// create TCP socket for client and connection..
 		Socket clientSocket;
 		Connection connection;
 		try {
@@ -26,15 +28,6 @@ public class MessagingClient {
 			e.printStackTrace();
 			return null;
 		}
-		
-		
-		// TODO
-		// create TCP socket for client and connection
-		
-//		if (true) {
-//			throw new RuntimeException("not yet implemented");
-//		}
-		
 		return connection;
 	}
 }
