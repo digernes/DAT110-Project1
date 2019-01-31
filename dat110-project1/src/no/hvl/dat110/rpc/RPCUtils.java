@@ -11,26 +11,21 @@ public class RPCUtils {
 			byte[] encoded;
 			encoded = str.getBytes();
 			marshalled[0] = rpcid;
-			for(int i = 0; i < marshalled.length; i++) {
-				marshalled[i+1] = encoded[i];
+			for (int i = 0; i < marshalled.length; i++) {
+				marshalled[i + 1] = encoded[i];
 			}
 			return encoded;
-		}
-		else {
+		} else {
 			throw new RuntimeException("Teksten er for lang.");
 		}
 	}
 
 	public static String unmarshallString(byte[] data) {
-
-		String decoded;
-
-		// TODO: unmarshall String contained in data into decoded
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		String decoded = "";
+		for (int i = 0; i < data.length + 1; i++) {
+			data[i] = data[i + 1];
 		}
-
+		decoded = data.toString();
 		return decoded;
 	}
 
@@ -73,13 +68,13 @@ public class RPCUtils {
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
 		byte[] encoded = new byte[5];
-		
+
 		byte[] intbytes = BigInteger.valueOf(x).toByteArray();
 		encoded[0] = rpcid;
-		for(int i = 0; i < intbytes.length; i++) {
-			encoded[i+1] = intbytes[i];
+		for (int i = 0; i < intbytes.length; i++) {
+			encoded[i + 1] = intbytes[i];
 		}
-		
+
 		// TODO: marshall RPC identifier and string into byte array
 
 		return encoded;
@@ -89,8 +84,8 @@ public class RPCUtils {
 
 		int decoded;
 
-		byte[] intbytes = new byte[data.length-1];
-		
+		byte[] intbytes = new byte[data.length - 1];
+
 		// TODO: unmarshall integer contained in data
 
 		if (true) {
