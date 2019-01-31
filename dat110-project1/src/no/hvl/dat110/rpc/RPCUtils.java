@@ -11,9 +11,7 @@ public class RPCUtils {
 			if (str.length() < 128) {
 				byte[] marshalled = new byte[str.length() + 1];
 				byte[] encoded;
-
 				encoded = str.getBytes("UTF8");
-
 				marshalled[0] = rpcid;
 				for (int i = 1; i < marshalled.length; i++) {
 					marshalled[i] = encoded[i - 1];
