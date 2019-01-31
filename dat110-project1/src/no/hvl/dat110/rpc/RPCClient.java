@@ -30,8 +30,6 @@ public class RPCClient {
 		
 		connection.close();
 		
-		throw new RuntimeException("not yet implemented");
-		
 	}
 	
 	public byte[] call(byte[] rpcrequest) {
