@@ -91,11 +91,13 @@ public class RPCUtils {
 
 		byte[] intbytes = new byte[data.length-1];
 		
-		// TODO: unmarshall integer contained in data
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		for(int i = 0; i < intbytes.length; i++) {
+			intbytes[i] = data[i+1];
 		}
+		
+		decoded = new BigInteger(intbytes).intValue();
+		
+		// TODO: unmarshall integer contained in data
 
 		return decoded;
 
