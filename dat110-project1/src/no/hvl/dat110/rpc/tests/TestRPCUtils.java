@@ -25,8 +25,11 @@ class TestRPCUtils {
 		int testint = 255;
 		
 		byte[] encoded = RPCUtils.marshallInteger((byte)0, testint);
+		for(byte b : encoded) {
+			System.out.println(b);
+		}
 		int decoded = RPCUtils.unmarshallInteger(encoded);
-		
+		System.out.println(decoded);
 		assertEquals(testint,decoded);
 	}
 	
