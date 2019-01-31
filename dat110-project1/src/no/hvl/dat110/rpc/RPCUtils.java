@@ -7,12 +7,12 @@ public class RPCUtils {
 
 	public static byte[] marshallString(byte rpcid, String str) {
 		if (str.length() < 128) {
+			System.out.println("Streng: "+str);
 			byte[] marshalled = new byte[str.length() + 1];
-			byte[] encoded;
-			encoded = str.getBytes();
+			byte[] encoded = str.getBytes();
 			marshalled[0] = rpcid;
-			for (int i = 0; i < marshalled.length; i++) {
-				marshalled[i + 1] = encoded[i];
+			for (int i = 1; i < marshalled.length; i++) {
+				marshalled[i] = encoded[i-1];
 			}
 			return encoded;
 		} else {
@@ -22,10 +22,12 @@ public class RPCUtils {
 
 	public static String unmarshallString(byte[] data) {
 		String decoded = "";
-		for (int i = 0; i < data.length + 1; i++) {
-			data[i] = data[i + 1];
+		byte[] tekst = new byte[data.length-1];
+		for (int i = 0; i < tekst.length; i++) {
+			data[i] = data[i+1];
 		}
-		decoded = data.toString();
+		decoded = tekst.toString();
+		System.out.println("Dekodet: "+decoded);
 		return decoded;
 	}
 
