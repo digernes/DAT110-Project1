@@ -5,16 +5,19 @@ import java.util.Arrays;
 public class RPCUtils {
 
 	public static byte[] marshallString(byte rpcid, String str) {
-
-		byte[] encoded;
-
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		if (str.length() < 128) {
+			byte[] marshalled = new byte[str.length() + 1];
+			byte[] encoded;
+			encoded = str.getBytes();
+			marshalled[0] = rpcid;
+			for(int i = 0; i < marshalled.length; i++) {
+				marshalled[i+1] = encoded[i];
+			}
+			return encoded;
 		}
-
-		return encoded;
+		else {
+			throw new RuntimeException("Teksten er for lang.");
+		}
 	}
 
 	public static String unmarshallString(byte[] data) {
