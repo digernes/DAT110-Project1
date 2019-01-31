@@ -1,33 +1,40 @@
 package no.hvl.dat110.rpc;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.Arrays;
 
 public class RPCUtils {
 
 	public static byte[] marshallString(byte rpcid, String str) {
-		if (str.length() < 128) {
-			System.out.println("Streng: "+str);
-			byte[] marshalled = new byte[str.length() + 1];
-			byte[] encoded = str.getBytes();
-			marshalled[0] = rpcid;
-			for (int i = 1; i < marshalled.length; i++) {
-				marshalled[i] = encoded[i-1];
+		try {
+			if (str.length() < 128) {
+				byte[] marshalled = new byte[str.length() + 1];
+				byte[] encoded;
+
+				encoded = str.getBytes("UTF8");
+
+				marshalled[0] = rpcid;
+				for (int i = 1; i < marshalled.length; i++) {
+					marshalled[i] = encoded[i - 1];
+				}
+				return marshalled;
+			} else {
+				throw new RuntimeException("Teksten er for lang.");
 			}
-			return encoded;
-		} else {
-			throw new RuntimeException("Teksten er for lang.");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 
 	public static String unmarshallString(byte[] data) {
 		String decoded = "";
-		byte[] tekst = new byte[data.length-1];
+		byte[] tekst = new byte[data.length - 1];
 		for (int i = 0; i < tekst.length; i++) {
-			data[i] = data[i+1];
+			tekst[i] = data[i + 1];
 		}
-		decoded = tekst.toString();
-		System.out.println("Dekodet: "+decoded);
+			decoded = new String(tekst);//new String(tekst, "UTF8"); //tekst.toString();
 		return decoded;
 	}
 
