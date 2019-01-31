@@ -1,5 +1,6 @@
 package no.hvl.dat110.rpc;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class RPCUtils {
@@ -75,13 +76,15 @@ public class RPCUtils {
 
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
-		byte[] encoded;
-
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		byte[] encoded = new byte[5];
+		
+		byte[] intbytes = BigInteger.valueOf(x).toByteArray();
+		encoded[0] = rpcid;
+		for(int i = 0; i < intbytes.length; i++) {
+			encoded[i+1] = intbytes[i];
 		}
+		
+		// TODO: marshall RPC identifier and string into byte array
 
 		return encoded;
 	}
@@ -90,6 +93,8 @@ public class RPCUtils {
 
 		int decoded;
 
+		byte[] intbytes = new byte[data.length-1];
+		
 		// TODO: unmarshall integer contained in data
 
 		if (true) {
