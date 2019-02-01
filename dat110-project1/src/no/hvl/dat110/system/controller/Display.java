@@ -15,7 +15,7 @@ public class Display extends RPCStub {
 		klient.connect();
 		byte[] svarByte = klient.call(mldByte);
 		klient.disconnect();
-		String svar = RPCUtils.unmarshallString(svarByte);
+		RPCUtils.unmarshallVoid(svarByte);
 		
 	}
 }
