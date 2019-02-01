@@ -50,7 +50,8 @@ public class RPCServer {
 			Message message = connection.receive();
 			
 			byte[] payload = message.getData();
-			rpcid = (int) payload[0];
+			
+				rpcid = (int) payload[0];
 
 			if (rpcid == RPCCommon.RPIDSTOP) {
 				stop = true;
