@@ -52,7 +52,7 @@ public class RPCServer {
 			byte[] payload = message.getData();
 			rpcid = (int) payload[0];
 			
-		   if (rpcid == RPCCommon.RPIDSTOP) {
+		  if (rpcid == RPCCommon.RPIDSTOP) {
 			   stop = true;
 		   }
 		   
