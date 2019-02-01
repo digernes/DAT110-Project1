@@ -51,16 +51,16 @@ public class RPCServer {
 			
 			byte[] payload = message.getData();
 			rpcid = (int) payload[0];
-			
-		  if (rpcid == RPCCommon.RPIDSTOP) {
-			   stop = true;
-		   }
+
+			if (rpcid == RPCCommon.RPIDSTOP) {
+				stop = true;
+			}
 		   
-		   RPCImpl impl = services.get(rpcid);
-		   byte[] payBack = impl.invoke(payload);
-		   Message back = new Message(payBack);
+			RPCImpl impl = services.get(rpcid);
+			byte[] payBack = impl.invoke(payload);
+			Message back = new Message(payBack);
 		   
-		   connection.send(back);
+			connection.send(back);
 		}
 	
 	}
