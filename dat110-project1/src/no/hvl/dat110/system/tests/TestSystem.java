@@ -30,8 +30,11 @@ class TestSystem {
 		try {
 			
 			displaythread.join();
+			System.out.println("display er joina.");
 			sensorthread.join();
+			System.out.println("sensor er joina");
 			controllerthread.join();
+			System.out.println("controller er joina");
 
 		} catch (Exception e) {
 			e.printStackTrace();

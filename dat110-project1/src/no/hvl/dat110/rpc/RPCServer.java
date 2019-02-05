@@ -48,11 +48,12 @@ public class RPCServer {
 			int rpcid;
 			
 			Message message = connection.receive();
-			
 			byte[] payload = message.getData();
-			
-				rpcid = (int) payload[0];
-
+			if(payload.length >0){
+			rpcid = (int) payload[0];
+			} else {
+				rpcid = 0;
+			}
 			if (rpcid == RPCCommon.RPIDSTOP) {
 				stop = true;
 			}

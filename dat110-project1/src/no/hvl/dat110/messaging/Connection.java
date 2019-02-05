@@ -45,7 +45,7 @@ public class Connection {
 		// read a segment from the input stream and decapsulate into message
 
 			try {
-				inStream.read(recvbuf);
+				inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

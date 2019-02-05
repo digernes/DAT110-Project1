@@ -10,8 +10,8 @@ public class Message {
 		if (payload.length <= 127) {
 			this.payload = payload; // TODO: check for length within boundary
 		} else {
-			payload = new byte[0];
 			System.out.println("Feilmelding: Melding er for lang til å bli konstruert.");
+			payload = new byte[0];
 		}
 	}
 
