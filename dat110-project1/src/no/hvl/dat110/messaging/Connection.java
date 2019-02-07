@@ -43,13 +43,16 @@ public class Connection {
 
 		// TODO
 		// read a segment from the input stream and decapsulate into message
-
+		int readLength = -1;
 			try {
-				inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
+				readLength = inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		
+		if(readLength != MessageConfig.SEGMENTSIZE) {
+			System.out.println("Noke av segmentet er missta! Forventa "+MessageConfig.SEGMENTSIZE+", fekk"+readLength);
+		}
 		message.decapsulate(recvbuf);
 			
 		return message;
