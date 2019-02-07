@@ -29,9 +29,12 @@ public class Controller  {
 		
 		display = new Display();
 		sensor = new Sensor();
+
+		displayclient.connect();
+		sensorclient.connect();
 		
-		display.register(displayclient);
-		sensor.register(sensorclient);
+		displayclient.register(display);
+		sensorclient.register(sensor);
 		
 		// register stop methods in the RPC middleware
 		displayclient.register(stopdisplay);
@@ -43,11 +46,11 @@ public class Controller  {
 		for(int i = 0; i < N; i++) {
 			String temp = "temp: "+ sensor.read();
 			display.write(temp);
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		stopdisplay.stop();
