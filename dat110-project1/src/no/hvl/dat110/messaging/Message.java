@@ -7,7 +7,7 @@ public class Message {
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		if (payload.length <= 127) {
+		if (payload.length <= MessageConfig.SEGMENTSIZE-1) {
 			this.payload = payload; // TODO: check for length within boundary
 		} else {
 			System.out.println("Feilmelding: Melding er for lang til å bli konstruert.");
@@ -25,7 +25,7 @@ public class Message {
 
 	public byte[] encapsulate() {
 
-		byte[] encoded = new byte[128];
+		byte[] encoded = new byte[MessageConfig.SEGMENTSIZE];
 		encoded[0] = (byte) payload.length;
 		for (int i = 0; i < payload.length; i++) {
 			encoded[i+1] = payload[i];
