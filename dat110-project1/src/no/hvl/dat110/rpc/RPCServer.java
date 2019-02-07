@@ -59,10 +59,12 @@ public class RPCServer {
 			}
 		   
 			RPCImpl impl = services.get(rpcid);
-			byte[] payBack = impl.invoke(payload);
-			Message back = new Message(payBack);
-		   
-			connection.send(back);
+			
+			if(impl != null) {
+				byte[] payBack = impl.invoke(payload);
+				Message back = new Message(payBack);
+				connection.send(back);
+			}
 		}
 	
 	}
